@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { shuffleArray } from '@/lib/shuffle';
@@ -37,6 +37,18 @@ function isValidMode(value: string | null): value is SessionMode {
 }
 
 export default function ExamPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-lg mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
+        <p className="text-[#64748B] text-center">Cargando...</p>
+      </div>
+    }>
+      <ExamContent />
+    </Suspense>
+  );
+}
+
+function ExamContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
