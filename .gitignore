@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# credentials & local files
+Credentials.txt
+*.pdf
+preguntas_balotario.txt
